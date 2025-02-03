@@ -2,8 +2,8 @@
     <link href="{{ $cssFile }}" rel="stylesheet" type="text/css" />
 @endforeach
 
-@foreach($imageFiles as $imageFile)
+{{-- @foreach($imageFiles as $imageFile)
     <link href="{{ $imageFile }}" rel="icon" type="image/png" />
-@endforeach
+@endforeach --}}
 
 @stack('css')

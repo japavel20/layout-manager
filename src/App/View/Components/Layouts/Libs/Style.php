@@ -30,7 +30,7 @@ class Style extends Component
     {
         return view('layout::components.layouts.libs.style', [
             'cssFiles' => $this->getCssFiles(),
-            'imageFiles' => $this->getImageFiles(),
+            // 'imageFiles' => $this->getImageFiles(),
         ]);
     }
 }

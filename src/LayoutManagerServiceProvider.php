@@ -30,6 +30,10 @@ class LayoutManagerServiceProvider extends ServiceProvider
     private function partials()
     {
         \Illuminate\Support\Facades\Blade::component(
+            'theme-master',
+            \Layout\Manager\App\View\Components\Layouts\Partials\Master::class
+        );
+        \Illuminate\Support\Facades\Blade::component(
             'theme-guest',
             \Layout\Manager\App\View\Components\Layouts\Partials\Guest::class
         );
@@ -52,6 +56,10 @@ class LayoutManagerServiceProvider extends ServiceProvider
         \Illuminate\Support\Facades\Blade::component(
             'themeSettings',
             \Layout\Manager\App\View\Components\Layouts\Partials\ThemeSettings::class
+        );
+        \Illuminate\Support\Facades\Blade::component(
+            'favicon',
+            \Layout\Manager\App\View\Components\Layouts\Partials\Favicon::class
         );
     }
 }
