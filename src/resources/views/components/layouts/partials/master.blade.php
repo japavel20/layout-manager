@@ -3,8 +3,9 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{{ $title ?? 'Alvion' }}</title>
-        {{-- <x-favicon/> --}}
+        {{-- <title>{{ $title ?? 'Alvion' }}</title> --}}
+        <x-title/>
+        <x-favicon/>
         <!-- Dynamic Theme CSS -->
         <x-style />
     </head>

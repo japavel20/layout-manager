@@ -61,5 +61,9 @@ class LayoutManagerServiceProvider extends ServiceProvider
             'favicon',
             \Layout\Manager\App\View\Components\Layouts\Partials\Favicon::class
         );
+        \Illuminate\Support\Facades\Blade::component(
+            'title',
+            \Layout\Manager\App\View\Components\Layouts\Partials\Title::class
+        );
     }
 }
