@@ -13,6 +13,7 @@ class LayoutManagerServiceProvider extends ServiceProvider
         $this->layouts();
         $this->libs();
         $this->partials();
+        $this->blocks();
     }
 
     public function layouts()
@@ -61,9 +62,12 @@ class LayoutManagerServiceProvider extends ServiceProvider
             'favicon',
             \Layout\Manager\App\View\Components\Layouts\Partials\Favicon::class
         );
+        
+    }
+    public function blocks(){
         \Illuminate\Support\Facades\Blade::component(
             'title',
-            \Layout\Manager\App\View\Components\Layouts\Partials\Title::class
+            \Layout\Manager\App\View\Components\Blocks\Title::class
         );
     }
 }

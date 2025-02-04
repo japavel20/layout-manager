@@ -1,6 +1,6 @@
 <?php
 
-namespace Layout\Manager\App\View\Components\Layouts\Partials;
+namespace Layout\Manager\App\View\Components\Blocks;
 use Exception;
 use Illuminate\View\Component;
 use Illuminate\Support\Facades\DB;
@@ -31,6 +31,6 @@ class Title extends Component
     }
     public function render()
     {
-        return view('layout::components.layouts.partials.title',['title'=>$this->title]);
+        return view('layout::components.blocks.title',['title'=>$this->title]);
     }
 }
