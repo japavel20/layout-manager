@@ -4,13 +4,7 @@
         width: 100%; 
         margin-top: auto;">
     <p class="fs-14">
-        © <span class="text-primary-div">Alvion</span> is Proudly
-        Owned by
-        <a
-            href="https://envytheme.com/"
-            target="_blank"
-            class="text-decoration-none text-primary"
-            >Alvion</a
-        >
+        <span class="text-primary-div">Alvion</span> &copy; Technology Partner
+        <x-copyright/>
     </p>
 </footer>

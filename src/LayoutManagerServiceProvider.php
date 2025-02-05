@@ -14,6 +14,7 @@ class LayoutManagerServiceProvider extends ServiceProvider
         $this->libs();
         $this->partials();
         $this->blocks();
+        $this->dataDisplay();
     }
 
     public function layouts()
@@ -58,16 +59,27 @@ class LayoutManagerServiceProvider extends ServiceProvider
             'themeSettings',
             \Layout\Manager\App\View\Components\Layouts\Partials\ThemeSettings::class
         );
-        \Illuminate\Support\Facades\Blade::component(
-            'favicon',
-            \Layout\Manager\App\View\Components\Layouts\Partials\Favicon::class
-        );
-        
     }
-    public function blocks(){
+    public function blocks()
+    {
         \Illuminate\Support\Facades\Blade::component(
             'title',
             \Layout\Manager\App\View\Components\Blocks\Title::class
+        );
+    }
+    public function dataDisplay()
+    {
+        \Illuminate\Support\Facades\Blade::component(
+            'favicon',
+            \Layout\Manager\App\View\Components\DataDisplay\Favicon::class
+        );
+        \Illuminate\Support\Facades\Blade::component(
+            'card',
+            \Layout\Manager\App\View\Components\DataDisplay\Card::class
+        );
+        \Illuminate\Support\Facades\Blade::component(
+            'copyright',
+            \Layout\Manager\App\View\Components\DataDisplay\Copyright::class
         );
     }
 }

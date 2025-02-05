@@ -1,6 +1,6 @@
 <?php
 
-namespace Layout\Manager\App\View\Components\Layouts\Partials;
+namespace Layout\Manager\App\View\Components\DataDisplay;
 
 use Exception;
 use Illuminate\View\Component;
@@ -19,30 +19,27 @@ class Favicon extends Component
      * @return void
      * * @return \Illuminate\View\View
      */
-    
+
     public function __construct(Theme $theme)
     {
         $this->theme = $theme;
 
-        if((Schema::hasTable('organization_setups')))
-        {
-            try{
+        if ((Schema::hasTable('organization_setups'))) {
+            try {
                 $setup = DB::table('organization_setups')->where('key', 'favicon')->first();
-                if(!is_null($setup)) {
+                if (!is_null($setup)) {
                     $this->favicon = $setup->value;
                 }
-            }catch(Exception $e){
+            } catch (Exception $e) {
                 dd($e);
             }
-        }
-        else{
+        } else {
             $this->favicon = $this->theme->getImageFiles() ?? null;
             // dd($favicon);
         }
     }
     public function render()
     {
-        return view('layout::components.layouts.partials.favicon', ['favicons' => $this->favicon]);
-
+        return view('layout::components.datadisplay.favicon', ['favicons' => $this->favicon]);
     }
 }
