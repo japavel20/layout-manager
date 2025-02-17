@@ -1,6 +1,6 @@
 <x-theme-master>
     <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
-        <h3 class="mb-0">Nav Group</h3>
+        <h3 class="mb-0">Nav Item</h3>
 
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb align-items-center mb-0 lh-1">
@@ -11,7 +11,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    <span class="fw-medium">Nav Group</span>
+                    <span class="fw-medium">Nav Item</span>
                 </li>
             </ol>
         </nav>
@@ -23,10 +23,10 @@
                     <input type="text" class="form-control" placeholder="Search here">
                     <i class="material-symbols-outlined position-absolute top-50 start-0 translate-middle-y">search</i>
                 </form>
-                <a href="{{route('nav-groups.create')}}" class="btn btn-outline-primary py-1 px-2 px-sm-4 fs-14 fw-medium rounded-3 hover-bg">
+                <a href="{{route('nav-items.create')}}" class="btn btn-outline-primary py-1 px-2 px-sm-4 fs-14 fw-medium rounded-3 hover-bg">
                     <span class="py-sm-1 d-block">
                         <i class="ri-add-line d-none d-sm-inline-block fs-18"></i>
-                        <span>Add New Nav Group</span>
+                        <span>Add New Nav Item</span>
                     </span>
                 </a>
             </div> 
@@ -38,33 +38,37 @@
                             <tr>
                                 <th scope="col">SL</th>
                                 <th scope="col">Title</th>
-                                <th scope="col">Parent Group</th>
-                                <th scope="col">Total Nav Item</th>
+                                <th scope="col">Url</th>
                                 <th scope="col">Icon</th>
+                                <th scope="col">Label</th>
+                                <th scope="col">Tooltip</th>
+                                <th scope="col">Menu Type</th>
                                 <th scope="col">Position</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                @foreach ($navGroups as $navGroup)
+                                @foreach ($navItems as $navItem)
                                     <td class="text-body">{{ $loop->iteration }}</td>
-                                    <td>{{ $navGroup->title }}</td>
-                                    <td>{{ $navGroup->parent }}</td>
-                                    <td>{{ $navGroup->total_nav_item }}</td>
-                                    <td>{{ $navGroup->icon }}</td>
-                                    <td>{{ $navGroup->position }}</td>
+                                    <td>{{ $navItem->title }}</td>
+                                    <td>{{ $navItem->url }}</td>
+                                    <td>{{ $navItem->icon }}</td>
+                                    <td>{{ $navItem->label }}</td>
+                                    <td>{{ $navItem->tooltip }}</td>
+                                    <td>{{ $navItem->menu_type }}</td>
+                                    <td>{{ $navItem->position }}</td>
                                     <td>
                                         <div class="d-flex align-items-center gap-1">
                                             <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
-                                                <a href="{{route('nav-groups.show', $navGroup->uuid)}}"><i class="material-symbols-outlined fs-16 text-primary">visibility</i></a>
+                                                <a href="{{route('nav-items.show', $navItem->uuid)}}"><i class="material-symbols-outlined fs-16 text-primary">visibility</i></a>
                                             </button>
                                             <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
-                                                <a href="{{route('nav-groups.show', $navGroup->uuid)}}">
+                                                <a href="{{route('nav-items.show', $navItem->uuid)}}">
                                                     <i class="material-symbols-outlined fs-16 text-body">edit</i>
                                                 </a>
                                             </button>
-                                            <form action="{{ route('nav-items.destroy', $navGroup->uuid) }}" method="POST" style="display: inline;">
+                                            <form action="{{ route('nav-items.destroy', $navItem->uuid) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE') {{-- Spoof DELETE request --}}
                                                 

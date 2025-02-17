@@ -29,7 +29,7 @@ class NavItemController extends Controller
      */
     public function index()
     {
-        return view('navigation::nav-items.index', [
+        return view('layout::nav-items.index', [
             'navItems' => NavItem::latest()->get()
         ]);
     }
@@ -41,7 +41,7 @@ class NavItemController extends Controller
      */
     public function create()
     {
-        return view('navigation::nav-items.create');
+        return view('layout::nav-items.create');
     }
 
     /**

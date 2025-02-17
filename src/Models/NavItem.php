@@ -15,7 +15,7 @@ class NavItem extends Model
     use SoftDeletes;
 
 
-    use Historiable;
+    // use Historiable;
     protected $connection = '';
     protected $table = 'nav_items';
     protected $guarded = ['id'];
