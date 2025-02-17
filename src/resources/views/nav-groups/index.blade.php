@@ -64,9 +64,9 @@
                                                     <i class="material-symbols-outlined fs-16 text-body">edit</i>
                                                 </a>
                                             </button>
-                                            <form action="{{ route('nav-items.destroy', $navGroup->uuid) }}" method="POST" style="display: inline;">
+                                            <form action="{{ route('nav-groups.destroy', $navGroup->uuid) }}" method="POST" style="display: inline;">
                                                 @csrf
-                                                @method('DELETE') {{-- Spoof DELETE request --}}
+                                                @method('DELETE') 
                                                 
                                                 <button type="submit" onclick="return confirm('{{ __('Are you sure?') }}')" 
                                                     class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">

@@ -58,7 +58,7 @@
                         <div class="form-group mb-4">
                             <label class="label text-secondary">Position</label>
                             <div class="form-group position-relative">
-                                <input type="text" id="positionInput" name="position" :value="old('position')"  class="form-control text-dark ps-5 h-55" placeholder="Enter Position No">
+                                <input type="number" id="positionInput" name="position" :value="old('position')"  class="form-control text-dark ps-5 h-55" placeholder="Enter Position No">
                             </div>
                         </div>
                     </div>
