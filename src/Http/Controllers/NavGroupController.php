@@ -16,7 +16,7 @@ class NavGroupController extends NavGroupBaseController
 {
     public function groupItemMap()
     {
-        return view('navigation::nav-groups.group-item-map');
+        return view('layout::nav-groups.group-item-map');
     }
 
     public function index()
