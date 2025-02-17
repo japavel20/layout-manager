@@ -1,0 +1,100 @@
+<x-theme-master>
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+        <h3 class="mb-0">Nav Group</h3>
+
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb align-items-center mb-0 lh-1">
+                <li class="breadcrumb-item">
+                    <a href="#" class="d-flex align-items-center text-decoration-none">
+                        <i class="ri-home-4-line fs-18 text-primary me-1"></i>
+                        <span class="text-secondary fw-medium hover">Navigation</span>
+                    </a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    <span class="fw-medium">Nav Group</span>
+                </li>
+            </ol>
+        </nav>
+    </div>
+    <div class="card bg-white border-0 rounded-3 mb-4">
+        <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-lg-4 mb-3">
+                <form class="position-relative table-src-form me-0">
+                    <input type="text" class="form-control" placeholder="Search here">
+                    <i class="material-symbols-outlined position-absolute top-50 start-0 translate-middle-y">search</i>
+                </form>
+                <a href="{{route('nav-groups.create')}}" class="btn btn-outline-primary py-1 px-2 px-sm-4 fs-14 fw-medium rounded-3 hover-bg">
+                    <span class="py-sm-1 d-block">
+                        <i class="ri-add-line d-none d-sm-inline-block fs-18"></i>
+                        <span>Add New Nav Group</span>
+                    </span>
+                </a>
+            </div> 
+
+            <div class="default-table-area all-products">
+                <div class="table-responsive">
+                    <table class="table align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col">SL</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Parent Group</th>
+                                <th scope="col">Total Nav Item</th>
+                                <th scope="col">Icon</th>
+                                <th scope="col">Position</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                @foreach ($navGroups as $navGroup)
+                                    <td class="text-body">{{ $loop->iteration }}</td>
+                                    <td>{{ $navGroup->title }}</td>
+                                    <td>{{ $navGroup->parent }}</td>
+                                    <td>{{ $navGroup->total_nav_item }}</td>
+                                    <td>{{ $navGroup->icon }}</td>
+                                    <td>{{ $navGroup->position }}</td>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-1">
+                                            <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
+                                                <a href="{{route('nav-groups.show', $navGroup->uuid)}}"><i class="material-symbols-outlined fs-16 text-primary">visibility</i></a>
+                                            </button>
+                                            <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
+                                                <i class="material-symbols-outlined fs-16 text-body">edit</i>
+                                            </button>
+                                            <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
+                                                <i class="material-symbols-outlined fs-16 text-danger">delete</i>
+                                            </button>
+                                        </div>
+                                    </td> 
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="d-flex justify-content-center justify-content-sm-between align-items-center text-center flex-wrap gap-2 showing-wrap">
+                    <span class="fs-13 fw-medium">Items per pages: 10</span>
+
+                    <div class="d-flex align-items-center">
+                        <span class="fs-13 fw-medium me-2">1 - 10 of 12</span>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination mb-0 justify-content-center">
+                                <li class="page-item">
+                                    <a class="page-link icon" href="basic-table.html" aria-label="Previous">
+                                        <i class="material-symbols-outlined">keyboard_arrow_left</i>
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link icon" href="basic-table.html" aria-label="Next">
+                                        <i class="material-symbols-outlined">keyboard_arrow_right</i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-theme-master>

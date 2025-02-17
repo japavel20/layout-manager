@@ -19,20 +19,51 @@
                     <span class="material-symbols-outlined menu-icon">dashboard</span>
                     <span class="title">Dashboard</span>
                 </a>
+            </li>  
+            <li class="menu-title small text-uppercase">
+                <span class="menu-title-text">Masterdata</span>
             </li>
-
+            <li class="menu-item" >
+                <a href="/dashboard" class="menu-link active">
+                    <span class="material-symbols-outlined menu-icon">dashboard</span>
+                    <span class="title">UoM</span>
+                </a>
+            </li> 
             <li class="menu-item">
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}" x-data>
-                    @csrf
-
-                    <a href="{{ route('logout') }}" class="menu-link logout" @click.prevent="$root.submit();">
-                        <span class="material-symbols-outlined menu-icon">logout</span>
-                        <span class="title">Logout</span>
-                    </a>
-                </form>
+                <a href="javascript:void(0);" class="menu-link menu-toggle active">
+                    <span class="material-symbols-outlined menu-icon">note_stack</span>
+                    <span class="title">Front Pages</span>
+                </a>
+                <ul class="menu-sub">
+                    <li class="menu-item">
+                        <a href="landing-page.html" class="menu-link">
+                            Home
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="features.html" class="menu-link">
+                            Features
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="our-team.html" class="menu-link">
+                            Our Team
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="faqs.html" class="menu-link">
+                            FAQ’s
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="contact.html" class="menu-link">
+                            Contact
+                        </a>
+                    </li>
+                </ul>
             </li>
-            
         </ul>
+
+        
     </aside>
 </div>
