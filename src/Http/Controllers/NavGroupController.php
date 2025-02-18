@@ -16,7 +16,8 @@ class NavGroupController extends NavGroupBaseController
 {
     public function groupItemMap()
     {
-        return view('layout::nav-groups.group-item-map');
+        $navGroups = NavGroup::orderBy('title', 'asc')->get();
+        return view('layout::nav-groups.group-item-map', compact('navGroups'));
     }
 
     public function index()

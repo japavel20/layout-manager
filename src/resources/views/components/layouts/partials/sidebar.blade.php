@@ -28,8 +28,6 @@
                     </li>
                 @endforeach
             @endforeach
-        </ul>
-
-        
+        </ul> 
     </aside>
 </div>

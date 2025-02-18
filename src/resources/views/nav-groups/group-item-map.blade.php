@@ -30,9 +30,10 @@
                             <label class="label text-secondary">Navgroup</label>
                             <div class="form-group position-relative">
                                 <select class="form-select form-control ps-5 h-55 select-section" aria-label="Default select example" name="navgroup_id" id="navgroup_idsInput">
-                                    
+                                    @foreach($navGroups as $group)
+                                        <option value="{{ $group->id }}">{{ $group->title }}</option>
+                                    @endforeach
                                 </select>
-                                <i class="ri-list-ordered position-absolute top-50 start-0 translate-middle-y fs-20 ps-20"></i>
                             </div>
                         </div>
                     </div> 
@@ -55,12 +56,13 @@
     @endpush
 
     @push('js')
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
         <script>
             (function($){
                 $(document).ready(()=>{
-                    $('.select-section').select2();
+                    // $('.select-section').select2();
                     $(document).on('change','#navgroup_idsInput',loadNavItems);                
                 });
             })(jQuery)
