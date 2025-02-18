@@ -17,6 +17,7 @@ class LayoutManagerServiceProvider extends ServiceProvider
         $this->partials();
         $this->blocks();
         $this->dataDisplay();
+        $this->dataEntry();
     }
 
     public function layouts()
@@ -82,6 +83,14 @@ class LayoutManagerServiceProvider extends ServiceProvider
         \Illuminate\Support\Facades\Blade::component(
             'copyright',
             \Layout\Manager\App\View\Components\DataDisplay\Copyright::class
+        );
+    }
+
+    public function dataEntry()
+    {
+        \Illuminate\Support\Facades\Blade::component(
+            'selecttrio',
+            \Layout\Manager\App\View\Components\DataEntry\Selecttrio::class
         );
     }
 }
