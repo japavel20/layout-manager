@@ -64,7 +64,7 @@
                                                 <a href="{{route('nav-items.show', $navItem->uuid)}}"><i class="material-symbols-outlined fs-16 text-primary">visibility</i></a>
                                             </button>
                                             <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
-                                                <a href="{{route('nav-items.show', $navItem->uuid)}}">
+                                                <a href="{{route('nav-items.edit', $navItem->uuid)}}">
                                                     <i class="material-symbols-outlined fs-16 text-body">edit</i>
                                                 </a>
                                             </button>

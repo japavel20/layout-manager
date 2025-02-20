@@ -73,7 +73,7 @@ class NavItemController extends Controller
      */
     public function show(NavItem $navItem)
     {
-        return view('navigation::nav-items.show', compact('navItem'));
+        return view('layout::nav-items.show', compact('navItem'));
     }
 
     /**
@@ -84,7 +84,7 @@ class NavItemController extends Controller
      */
     public function edit(NavItem $navItem)
     {
-        return view('navigation::nav-items.edit', compact('navItem'));
+        return view('layout::nav-items.edit', compact('navItem'));
     }
 
     /**
