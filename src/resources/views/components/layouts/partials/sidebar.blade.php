@@ -14,6 +14,7 @@
         <ul class="menu-inner">
             @foreach($navGroups as $navGroup)
                 <li class="menu-title small text-uppercase">
+                    {{-- <span class="material-symbols-outlined menu-icon">{{ $navGroup->icon }}</span> --}}
                     <span class="menu-title-text">{{ $navGroup->title }}</span>
                 </li>
 

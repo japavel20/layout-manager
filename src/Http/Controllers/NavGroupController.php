@@ -101,14 +101,14 @@ class NavGroupController extends NavGroupBaseController
         $parent      = $navGroup->parent_id;
         $parent_name = NavGroup::where('id', $parent)->pluck('title')->first();
 
-        return view('navigation::nav-groups.show', compact('navGroup', 'parent_name'));
+        return view('layout::nav-groups.show', compact('navGroup', 'parent_name'));
     }
     public function edit($uuid)
     {
         $navGroup         = NavGroup::where('uuid', $uuid)->first();
         $tree_options = NavGroup::treeOptions($navGroup->parent_id);
 
-        return view('navigation::nav-groups.edit', compact('navGroup', 'tree_options'));
+        return view('layout::nav-groups.edit', compact('navGroup', 'tree_options'));
     }
     public function update(NavGroupRequest $request, NavGroup $navGroup)
     {
