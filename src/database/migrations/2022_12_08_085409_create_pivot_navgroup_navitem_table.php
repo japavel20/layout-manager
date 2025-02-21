@@ -28,6 +28,6 @@ class CreatePivotNavGroupNavItemTable extends Migration
      */
     public function down()
     {
-        Schema::connection('smertgenie')->dropIfExists('nav_group_nav_item');
+        Schema::dropIfExists('nav_group_nav_item');
     }
 }
