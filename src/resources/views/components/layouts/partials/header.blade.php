@@ -710,7 +710,7 @@
                                             <div
                                                 class="d-flex align-content-center"
                                             >
-                                                <h3>Olivia</h3>
+                                                <h3>{{$user->name}}</h3>
                                             </div>
                                         </div>
                                     </div>
@@ -734,11 +734,10 @@
                                         class="flex-grow-1 ms-2"
                                     >
                                         <h3 class="fw-medium">
-                                            William John
+                                            {{$user->name}}
                                         </h3>
                                         <span class="fs-12"
-                                            >Marketing
-                                            Manager</span
+                                            >Administrator</span
                                         >
                                     </div>
                                 </div>

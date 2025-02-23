@@ -3,6 +3,7 @@
 namespace Layout\Manager\App\View\Components\Layouts\Partials;
 
 use Illuminate\View\Component;
+use Illuminate\Support\Facades\Auth;
 
 class Header extends Component
 {
@@ -17,6 +18,7 @@ class Header extends Component
     }
     public function render()
     {
-        return view('layout::components.layouts.partials.header');
+        $user = Auth::user();
+        return view('layout::components.layouts.partials.header', compact('user'));
     }
 }
