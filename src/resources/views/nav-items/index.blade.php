@@ -86,27 +86,36 @@
                 </div>
 
                 <div class="d-flex justify-content-center justify-content-sm-between align-items-center text-center flex-wrap gap-2 showing-wrap">
-                    <span class="fs-13 fw-medium">Items per pages: 10</span>
+                    <form method="GET" class="d-flex align-items-center">
+                        <label for="per_page" class="fs-13 fw-medium me-2">Items per page:</label>
+                        <select name="per_page" id="per_page" class="form-select form-select-sm w-auto" onchange="this.form.submit()">
+                            @foreach([5, 10, 20, 50, 100] as $size)
+                                <option value="{{ $size }}" {{ request('per_page', 10) == $size ? 'selected' : '' }}>
+                                    {{ $size }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </form>
 
                     <div class="d-flex align-items-center">
-                        <span class="fs-13 fw-medium me-2">1 - 10 of 12</span>
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination mb-0 justify-content-center">
-                                <li class="page-item">
-                                    <a class="page-link icon" href="basic-table.html" aria-label="Previous">
-                                        <i class="material-symbols-outlined">keyboard_arrow_left</i>
-                                    </a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link icon" href="basic-table.html" aria-label="Next">
-                                        <i class="material-symbols-outlined">keyboard_arrow_right</i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <span class="fs-13 fw-medium me-2">
+                            {{ $navItems->firstItem() }} - {{ $navItems->lastItem() }} of {{ $navItems->total() }}
+                        </span>
+                        {{ $navItems->appends(['per_page' => request('per_page', 10)])->links('pagination::bootstrap-5') }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    @push('css')
+    <style>
+        .pagination {
+            margin:0px !important;
+            padding:0px !important;
+            margin-left: 8px !important;
+        }
+    </style>
+    @endpush
+
 </x-theme-master>

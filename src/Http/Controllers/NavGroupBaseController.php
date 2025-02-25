@@ -27,12 +27,12 @@ class NavGroupBaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('layout::nav-groups.index', [
-            'navGroups' => NavGroup::latest()->get()
-        ]);
-    }
+    // public function index()
+    // {
+    //     return view('layout::nav-groups.index', [
+    //         'navGroups' => NavGroup::latest()->get()
+    //     ]);
+    // }
 
     /**
      * Show the form for creating a new resource.

@@ -7,6 +7,8 @@ use Layout\Manager\Http\Requests\NavItemRequest;
 use Layout\Manager\Models\NavItem;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+
 //use another classes
 
 class NavItemController extends Controller
@@ -27,12 +29,14 @@ class NavItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('layout::nav-items.index', [
-            'navItems' => NavItem::latest()->get()
-        ]);
+        $perPage = $request->input('per_page', 10); // Default to 10 if not specified
+        $navItems = NavItem::paginate($perPage);
+
+        return view('layout::nav-items.index', compact('navItems'));
     }
+
 
     /**
      * Show the form for creating a new resource.

@@ -4,12 +4,12 @@ namespace Layout\Manager\Http\Controllers;
 
 use Exception;
 use Illuminate\Database\QueryException;
-use Illuminate\Http\Request;
 use Layout\Manager\Http\Requests\NavGroupRequest;
 use Layout\Manager\Models\NavGroup;
 use Layout\Manager\Models\NavItem;
 use Illuminate\Support\Str;
 use Pondit\Authorize\Models\Role;
+use Illuminate\Http\Request;
 use stdClass;
 
 class NavGroupController extends NavGroupBaseController
@@ -20,20 +20,20 @@ class NavGroupController extends NavGroupBaseController
         return view('layout::nav-groups.group-item-map', compact('navGroups'));
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $navGroups = NavGroup::with('navItems')->latest()->get();
+
+        $perPage = $request->input('per_page', 10); // Default 10 items per page
+    
+        $navGroups = NavGroup::with('navItems')->latest()->paginate($perPage);
+    
         foreach ($navGroups as $navGroup) {
-
-            $navGroup->total_nav_item = count($navGroup->navItems);
+            $navGroup->total_nav_item = $navGroup->navItems->count();
             $parent = NavGroup::find($navGroup->parent_id);
-
             $navGroup->parent = $parent->title ?? '';
         }
 
-        return view('layout::nav-groups.index', [
-            'navGroups' => $navGroups
-        ]);
+        return view('layout::nav-groups.index', compact('navGroups'));
     }
 
     public function groupItemMapStore(Request $request)
@@ -57,7 +57,7 @@ class NavGroupController extends NavGroupBaseController
                 }
             }
 
-            return redirect()->route('nav-groups.index')
+            return redirect()->route('nav-group-item-map.index')
                 ->withSuccess(__('Recored Stored Successfully'));
         } catch (\Exception | QueryException $e) {
             \Log::channel('pondit')->error($e->getMessage());
