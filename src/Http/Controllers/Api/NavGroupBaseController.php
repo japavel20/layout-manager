@@ -37,7 +37,7 @@ class NavGroupBaseController extends Controller
      */
     public function index()
     {
-        $navGroups = NavGroup::latest()->get();
+        $navGroups = NavGroup::with('navItems')->latest()->get();
 
         return response()->json([
             'status' => true,
