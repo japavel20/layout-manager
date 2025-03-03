@@ -85,6 +85,11 @@ class LayoutManagerServiceProvider extends ServiceProvider
             'copyright',
             \Layout\Manager\App\View\Components\DataDisplay\Copyright::class
         );
+
+        \Illuminate\Support\Facades\Blade::component(
+            'toster',
+            \Layout\Manager\App\View\Components\DataDisplay\Toster::class
+        );
     }
 
     public function dataEntry()

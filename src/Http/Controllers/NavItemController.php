@@ -32,7 +32,7 @@ class NavItemController extends Controller
     public function index(Request $request)
     {
         $perPage = $request->input('per_page', 10); // Default to 10 if not specified
-        $navItems = NavItem::paginate($perPage);
+        $navItems = NavItem::latest()->paginate($perPage);
 
         return view('layout::nav-items.index', compact('navItems'));
     }
