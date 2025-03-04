@@ -10,6 +10,8 @@ class GeneralSetting extends Model
 {
     protected $table   =   'general_settings';
     protected $guarded =   [];
+    protected $keyType = 'string';
+    public $incrementing = false;
 
     public static function rules($id = '')
     {
@@ -26,13 +28,13 @@ class GeneralSetting extends Model
 
     public function getRouteKeyName()
     {
-        return 'uuid';
+        return 'id';
     }
 
     protected static function booted()
     {
         static::creating(function($model) {
-            $model->uuid = (String) Str::uuid();
+            $model->id = (String) Str::uuid();
         });
     }
 }

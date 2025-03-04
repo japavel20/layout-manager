@@ -14,8 +14,7 @@ class CreateGeneralSettingsTable extends Migration
     public function up()
     {
         Schema::create('general_settings', function (Blueprint $table) {
-            $table->increments('id');
-            $table->uuid('uuid');
+            $table->uuid('id')->primary();
             $table->string('key');
             $table->string('value');
             $table->string('path')->nullable();
