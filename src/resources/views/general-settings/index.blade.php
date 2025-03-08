@@ -70,11 +70,6 @@
                                                 </button>
                                             </form>
                                         </div>
-                                     
-                                        {{-- <x-sg-link-show href="{{route('organization-setups.show', $setup->uuid)}}" />
-                                        <x-sg-link-edit href="{{route('organization-setups.edit', $setup->uuid)}}" />
-                                        <x-sg-btn-delete action="{{route('organization-setups.destroy', $setup->uuid)}}" method="post" />
-                                        --}}
                                     </td>
                                 </tr>
                             @endforeach

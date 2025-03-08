@@ -25,7 +25,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         Route::get('/{setup}', [GeneralSettingsController::class, 'show'])->name('general-settings.show');
         Route::post('/{setup}/update', [GeneralSettingsController::class, 'update'])->name('general-settings.update');
         Route::get('/{setup}/edit', [GeneralSettingsController::class, 'edit'])->name('general-settings.edit');
-        Route::post('/{setup}/delete', [GeneralSettingsController::class, 'destroy'])->name('general-settings.destroy');
+        Route::delete('/{setup}/delete', [GeneralSettingsController::class, 'destroy'])->name('general-settings.destroy');
 
         Route::post('/api/upload-image', [GeneralSettingsController::class, 'upload_image']);
     });
