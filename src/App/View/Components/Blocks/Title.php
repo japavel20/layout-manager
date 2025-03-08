@@ -17,10 +17,10 @@ class Title extends Component
     public function __construct()
     {
         
-        if((Schema::hasTable('organization_setups')))
+        if((Schema::hasTable('general_settings')))
         {
             try{
-                $setup = DB::table('organization_setups')->where('key', 'title')->first();
+                $setup = DB::table('general_settings')->where('key', 'title')->first();
                 if(!is_null($setup)) {
                     $this->title = $setup->value;
                 }
