@@ -115,7 +115,7 @@
                 el              = $(this);
 
             $.ajax({
-                url         : '/organization-setups/api/upload-image',
+                url         : '/general-settings/api/upload-image',
                 method      : 'POST',
                 dataType    : 'json',
                 data        : {"image_b64" : $("#image_b64").val()},

@@ -23,7 +23,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         Route::post('/', [GeneralSettingsController::class, 'store'])->name('general-settings.store');
         Route::get('/create', [GeneralSettingsController::class, 'create'])->name('general-settings.create');
         Route::get('/{setup}', [GeneralSettingsController::class, 'show'])->name('general-settings.show');
-        Route::post('/{setup}', [GeneralSettingsController::class, 'update'])->name('general-settings.update');
+        Route::post('/{setup}/update', [GeneralSettingsController::class, 'update'])->name('general-settings.update');
         Route::get('/{setup}/edit', [GeneralSettingsController::class, 'edit'])->name('general-settings.edit');
         Route::post('/{setup}/delete', [GeneralSettingsController::class, 'destroy'])->name('general-settings.destroy');
 

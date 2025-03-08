@@ -99,13 +99,11 @@ class GeneralSettingsController extends Controller
         try 
         {
             $setup = $setup->update([
-                            'scope'         => $request->scope,
                             'key'           => $request->key,
                             'value'         => $request->value,
                             'path'          => $request->path,
                             'updated_at'    => now(),
                         ]);
-
             if (!$setup)
                 throw new Exception("Unable to update Organization Setup", 400);
 
