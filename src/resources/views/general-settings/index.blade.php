@@ -53,14 +53,14 @@
                                     <td class="d-flex">
                                         <div class="d-flex align-items-center gap-1">
                                             <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
-                                                <a href="{{route('general-settings.show', $setup->uuid)}}"><i class="material-symbols-outlined fs-16 text-primary">visibility</i></a>
+                                                <a href="{{route('general-settings.show', $setup->id)}}"><i class="material-symbols-outlined fs-16 text-primary">visibility</i></a>
                                             </button>
                                             <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
-                                                <a href="{{route('general-settings.edit', $setup->uuid)}}">
+                                                <a href="{{route('general-settings.edit', $setup->id)}}">
                                                     <i class="material-symbols-outlined fs-16 text-body">edit</i>
                                                 </a>
                                             </button>
-                                            <form action="{{ route('general-settings.destroy', $setup->uuid) }}" method="POST" style="display: inline;">
+                                            <form action="{{ route('general-settings.destroy', $setup->id) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE') {{-- Spoof DELETE request --}}
                                                 
