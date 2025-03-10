@@ -26,6 +26,7 @@ class Favicon extends Component
 
         if ((Schema::hasTable('general_settings'))) {
             try {
+                
                 $setup = DB::table('general_settings')->where('key', 'favicon')->first();
                 if (!is_null($setup)) {
                     $this->favicon = $setup->value;

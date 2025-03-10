@@ -15,8 +15,8 @@ class GeneralSettingsController extends Controller
     private $setups = [
         "title"                         => "Title",
         "favicon"                       => "Favicon",
-        "logo"                          => "Header Logo",
-        "application-logo"              => "Application Logo",
+        "header-logo"                   => "Header Logo",
+        "login-logo"                    => "Login Logo",
         "myaccount"                     => "My Account Image",
         "left-bg"                       => "Login Reg Left Backgroud",
         "client"                        => "Client",
@@ -25,6 +25,7 @@ class GeneralSettingsController extends Controller
         "is-register-visible"           => "Is Register Visible",
         "second-login-screen"           => "Activate Second Login Screen",
         "app-dashboard"                 => "App Dashboard",
+        "loader-text"                   => "Loader Text",
     ];
 
     public function index(Request $request)
