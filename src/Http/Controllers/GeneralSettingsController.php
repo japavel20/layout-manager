@@ -2,6 +2,7 @@
 
 namespace Layout\Manager\Http\Controllers;
 
+use finfo;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -137,43 +138,52 @@ class GeneralSettingsController extends Controller
 
     public function upload_image(Request $request)
     {
-       try
-       {  
-            $base64_image   = $request->input('image_b64');
-            $setup_id       = $request->input('setup_id');
-            $unlink         = $request->input('unlink');
+        try {  
+            $base64_image = $request->input('image_b64');
+            $setup_id = $request->input('setup_id');
+            $unlink = $request->input('unlink');
 
-            if (!$base64_image)
-                throw new Exception("image is required", 404);
-
-            if (!empty($base64_image) && $unlink)
-            {
-                $setup_data = DB::table('organization_setups')
-                                    ->where('id', $setup_id)
-                                    ->first();
-                                    
-                Storage::delete('public/'.substr($setup_data->value, strpos($setup_data->value, '/')+1));
+            if (!$base64_image) {
+                throw new Exception("Image is required", 404);
             }
+
+            if (!empty($base64_image) && $unlink) {
+                $setup_data = DB::table('general_settings')->where('id', $setup_id)->first();
                 
-            $extension   = explode('/', mime_content_type($base64_image))[1];
-            $base64_str  = explode(',',$base64_image);
-            $base64_str  = $base64_str[1]??$base64_str;
-            $image       = base64_decode($base64_str);
-            
-            $path = 'organization-setup/'. 'setup-'.time().".$extension";
-            Storage::put('public/'.$path, $image);
+                if ($setup_data && !empty($setup_data->value)) {
+                    Storage::delete('public/' . substr($setup_data->value, strpos($setup_data->value, '/') + 1));
+                }
+            }
+
+            // Extract base64 string
+            $base64_str = substr($base64_image, strpos($base64_image, ',') + 1);
+            $image = base64_decode($base64_str);
+
+            if (!$image) {
+                throw new Exception("Invalid image format", 400);
+            }
+
+            // Get file extension
+            $finfo = new finfo(FILEINFO_MIME_TYPE);
+            $mimeType = $finfo->buffer($image);
+            $extension = explode('/', $mimeType)[1] ?? 'png'; // Default to png
+
+            // Define the file path
+            $path = 'general-settings/setup-' . time() . ".$extension";
+
+            // Save file in storage/public directory
+            Storage::disk('public')->put($path, $image);
 
             return response()->json([
-                                'sucess'  => true,
-                                'data'      => $path
-                            ], 200);
-        }
-        catch(Exception $e)
-        {
+                'success' => true,
+                'data' => $path
+            ], 200);
+        } catch (Exception $e) {
             return response()->json([
-                'success'   => false,
-                'msg'       => $e->getMessage()
-            ],$e->getCode());
+                'success' => false,
+                'msg' => $e->getMessage()
+            ], $e->getCode());
         }
     }
+
 }
