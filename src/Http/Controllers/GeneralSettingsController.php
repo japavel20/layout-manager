@@ -25,7 +25,7 @@ class GeneralSettingsController extends Controller
         "is-register-visible"           => "Is Register Visible",
         "second-login-screen"           => "Activate Second Login Screen",
         "app-dashboard"                 => "App Dashboard",
-        "loader-text"                   => "Loader Text",
+        "preloader-text"                => "Preloader Text",
     ];
 
     public function index(Request $request)
