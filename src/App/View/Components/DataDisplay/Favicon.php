@@ -28,8 +28,15 @@ class Favicon extends Component
             try {
                 
                 $setup = DB::table('general_settings')->where('key', 'favicon')->first();
+
                 if (!is_null($setup)) {
                     $this->favicon = $setup->value;
+                }else{
+                    $image_value_string = $this->theme->getImageFiles();
+                    if (is_array($image_value_string)) {
+                        $image_value_string = implode(",", $image_value_string);
+                    }
+                    $this->favicon = $image_value_string ?? null;
                 }
             } catch (Exception $e) {
                 dd($e);
