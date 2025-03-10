@@ -33,6 +33,7 @@
 
             <div class="default-table-area all-products">
                 <div class="table-responsive">
+                    <x-toster/>
                     <table class="table align-middle">
                         <thead>
                             <tr>
