@@ -6,9 +6,9 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 
-class GeneralSetting extends Model
+class TenantSetting extends Model
 {
-    protected $table   =   'general_settings';
+    protected $table   =   'tenant_settings';
     protected $guarded =   [];
     protected $keyType = 'string';
     public $incrementing = false;
@@ -19,15 +19,14 @@ class GeneralSetting extends Model
             $id = ",$id";
         }
         return [
-            'key'   => 'required|unique:general_settings,key' . $id,
+            'key'   => 'required|unique:tenat_settings,key' . $id,
             'value' => 'required',
-            'path'  => 'nullable',
         ];
     }
 
     public function getRouteKeyName()
     {
-        return 'id';
+        return 'uuid';
     }
 
     protected static function booted()
@@ -35,5 +34,19 @@ class GeneralSetting extends Model
         static::creating(function ($model) {
             $model->id = (string) Str::uuid();
         });
+    }
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class);
+    }
+
+    public static function get($tenantId, $key, $default = null)
+    {
+        return self::where('tenant_id', $tenantId)->where('key', $key)->value('value') ?? $default;
+    }
+
+    public static function set($tenantId, $key, $value)
+    {
+        return self::updateOrCreate(['tenant_id' => $tenantId, 'key' => $key], ['value' => $value]);
     }
 }
