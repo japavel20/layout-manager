@@ -26,7 +26,7 @@
                 <a href="{{route('tenants.create')}}" class="btn btn-outline-primary py-1 px-2 px-sm-4 fs-14 fw-medium rounded-3 hover-bg">
                     <span class="py-sm-1 d-block">
                         <i class="ri-add-line d-none d-sm-inline-block fs-18"></i>
-                        <span>Add New Tenat</span>
+                        <span>Add New Tenant</span>
                     </span>
                 </a>
             </div> 
