@@ -15,6 +15,7 @@ class CreatePivotNavGroupNavItemTable extends Migration
     {
         Schema::create('nav_group_nav_item', function (Blueprint $table) {
             $table->id();
+            $table->uuid('tenat_id')->nullable();
             $table->integer('nav_group_id')->unsigned();
             $table->integer('nav_item_id')->unsigned();
             $table->timestamps();
