@@ -1,12 +1,9 @@
 <div class="preloader" id="preloader">
     <div class="preloader">
         <div class="waviy position-relative">
-            <span class="d-inline-block">A</span>
-            <span class="d-inline-block">L</span>
-            <span class="d-inline-block">V</span>
-            <span class="d-inline-block">I</span>
-            <span class="d-inline-block">O</span>
-            <span class="d-inline-block">N</span>
+            @foreach(str_split($preloader_text) as $char)
+                <span class="d-inline-block text-uppercase">{{ $char }}</span>
+            @endforeach
         </div>
     </div>
 </div>
