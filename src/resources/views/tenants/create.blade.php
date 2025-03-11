@@ -49,6 +49,35 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <label class="label text-secondary fs-14">Admin User Information</label>
+                            <div class="col-lg-3">
+                                <div class="form-group mb-4">
+                                    <label class="label text-secondary">User Name</label>
+                                    <div class="form-group position-relative">
+                                        <input type="text" id="userNameInput" name="name" :value="old('name')"  class="form-control text-dark ps-5 h-55" placeholder="Enter Tenant Name" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group mb-4">
+                                    <label class="label text-secondary">User Email</label>
+                                    <div class="form-group position-relative">
+                                        <input type="text" id="emailInput" name="email" :value="old('email')"  class="form-control text-dark ps-5 h-55" placeholder="Enter Tenant Name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group mb-4">
+                                    <label class="label text-secondary">User Password</label>
+                                    <div class="form-group position-relative">
+                                        <input type="text" id="passwordInput" name="password" :value="old('password')"  class="form-control text-dark ps-5 h-55" placeholder="Enter Tenant Name">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 <div class="text-end gap-2">
                     <button type="submit" class="btn btn-primary bg-primary bg-opacity-10 text-primary border-0 fw-semibold py-2 px-4">Submit</button>
                     <button type="submit" class="btn btn-danger bg-danger bg-opacity-10 text-danger border-0 fw-semibold py-2 px-4">Cancel</button>
@@ -56,5 +85,17 @@
             </form>
         </div>
     </div>
+    @push('js')
+        <script>
+            $(document).ready(function () {
+                $("#nameInput").on("input", function () {
+                    let name = $(this).val().trim().toLowerCase().replace(/\s+/g, ''); // Remove spaces & convert to lowercase
+                    $("#userNameInput").val(name);
+                    $("#emailInput").val(name ? name + "@admin.com" : "");
+                    $("#passwordInput").val("@dmin1234"); // Default password
+                });
+            });
+        </script>
+    @endpush
     
 </x-theme-master>
