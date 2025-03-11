@@ -1,15 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Layout\Manager\Http\Controllers\Api\NavLocationController;
-use Layout\Manager\Http\Controllers\Api\NavLocationHistoryController;
-use Layout\Manager\Http\Controllers\Api\NavGroupController;
-use Layout\Manager\Http\Controllers\Api\NavGroupHistoryController;
 use Layout\Manager\Http\Controllers\Api\RoleController;
-use Layout\Manager\Http\Controllers\Api\RoleHistoryController;
+use Layout\Manager\Http\Controllers\Api\TenantController;
 use Layout\Manager\Http\Controllers\Api\NavItemController;
-
+use Layout\Manager\Http\Controllers\Api\NavGroupController;
+use Layout\Manager\Http\Controllers\Api\NavLocationController;
+use Layout\Manager\Http\Controllers\Api\RoleHistoryController;
 use Layout\Manager\Http\Controllers\Api\NavItemHistoryController;
+
+use Layout\Manager\Http\Controllers\Api\NavGroupHistoryController;
+use Layout\Manager\Http\Controllers\Api\NavLocationHistoryController;
 
 //use namespace
 
@@ -23,4 +24,5 @@ Route::group(['middleware' => ['web', 'api', 'auth'], 'prefix' => 'api', 'as' =>
 
     // Route::get('get-role-navitems-with-selected/{structureId}', [NavItemController::class, 'getnavitemWithSelected']);
     //Place your route here
+    Route::apiResource('tenants', TenantController::class);
 });

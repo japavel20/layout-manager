@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Layout\Manager\Http\Controllers\TenantController;
 use Layout\Manager\Http\Controllers\NavItemController;
 use Layout\Manager\Http\Controllers\NavGroupController;
 use Layout\Manager\Http\Controllers\GeneralSettingsController;
@@ -16,7 +17,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/nav-groups-positions', [NavGroupController::class, 'navGroupPosition'])->name('nav-group-position');
     // Route::get('/sync-nav-item-role',[RoleController::class, 'suncNavItemRole']);
     //Place your route here
-   
+    Route::resource('tenants', TenantController::class);
 
     Route::prefix('general-settings')->group(function () {
         Route::get('/', [GeneralSettingsController::class, 'index'])->name('general-settings.index');
@@ -29,5 +30,4 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
         Route::post('/api/upload-image', [GeneralSettingsController::class, 'upload_image']);
     });
-
 });

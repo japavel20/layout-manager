@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Layout\Manager\Models\TenantSetting;
 
 
-class Tenat extends Model
+class Tenant extends Model
 {
     protected $table   =   'tenants';
     protected $guarded =   [];
@@ -21,7 +21,7 @@ class Tenat extends Model
      */
     public function getRouteKeyName()
     {
-        return 'uuid';
+        return 'id';
     }
 
     public function settings()
