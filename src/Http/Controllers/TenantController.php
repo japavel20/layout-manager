@@ -2,12 +2,14 @@
 
 namespace Layout\Manager\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Layout\Manager\Http\Requests\TenantRequest;
-use Layout\Manager\Models\Tenant;
-use Illuminate\Database\QueryException;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Layout\Manager\Models\Tenant;
+use App\Http\Controllers\Controller;
+use Illuminate\Database\QueryException;
+use Layout\Manager\Http\Requests\TenantRequest;
+use Illuminate\Support\Facades\DB;
 
 //use another classes
 
@@ -57,12 +59,26 @@ class TenantController extends Controller
     public function store(TenantRequest $request)
     {
         try {
-            $tenant = Tenant::create(['id' => Str::uuid()] + $request->all());
+            DB::beginTransaction();
+            $tenant = Tenant::create([
+                'id'        => Str::uuid(),
+                'name'      => $request->name,
+                'domain'    => $request->domain ?? null,
+                'database'  => $request->database ?? null,
+                'status'    => 'Active',
+            ]);
+            $tenantUser = User::create([
+                'name'      => $request->name,
+                'email'     => $request->email,
+                'password'  => bcrypt($request->password),
+                'active_role_id'  => 2,
+                'tenant_id' => $tenant->id,
+            ]);
+            DB::commit();
             //handle relationship store
             return redirect()->route('tenants.index')
                 ->withSuccess(__('Successfully Created'));
         } catch (\Exception | QueryException $e) {
-            \Log::channel('pondit')->error($e->getMessage());
             return redirect()->back()->withInput()->withErrors(
                 config('app.env') == 'production' ? __('Somethings Went Wrong') : $e->getMessage()
             );
@@ -101,8 +117,31 @@ class TenantController extends Controller
     public function update(TenantRequest $request, Tenant $tenant)
     {
         try {
-            $tenant->update($request->all());
-            //handle relationship update
+            DB::beginTransaction();
+
+            // Update tenant details (Tenant table)
+            $tenantData = $request->only(['name', 'domain', 'database', 'status']); // or whatever fields you want to allow for the tenant update
+            $tenant->update($tenantData);
+
+            // Check if the tenant has an associated admin user and update the user details
+            if ($tenant->adminUser) {
+                $adminUserData = [
+                    'name'  => $request->name ?? $tenant->adminUser->name,
+                    'email' => $request->email ?? $tenant->adminUser->email,
+                ];
+
+                // Only update the password if provided
+                if ($request->filled('password')) {
+                    $adminUserData['password'] = bcrypt($request->password);
+                }
+
+                // Update the admin user (Users table)
+                $tenant->adminUser->update($adminUserData);
+            }
+
+            // Commit the transaction
+            DB::commit();
+
             return redirect()->route('tenants.index')
                 ->withSuccess(__('Successfully Updated'));
         } catch (\Exception | QueryException $e) {

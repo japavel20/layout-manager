@@ -61,6 +61,36 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <label class="label text-secondary fs-14">Admin User Information</label>
+                            <div class="col-lg-3">
+                                <div class="form-group mb-4">
+                                    <label class="label text-secondary">User Name</label>
+                                    <div class="form-group position-relative">
+                                        <input type="text" id="userNameInput" name="name" value="{{ old('name',$tenant->adminUser->name ?? '')}}"  class="form-control text-dark ps-5 h-55" placeholder="Enter Tenant Name" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group mb-4">
+                                    <label class="label text-secondary">User Email</label>
+                                    <div class="form-group position-relative">
+                                        <input type="text" id="emailInput" name="email" value="{{ old('email',$tenant->adminUser->email ?? '')}}"  class="form-control text-dark ps-5 h-55" placeholder="Enter Tenant Name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group mb-4">
+                                    <label class="label text-secondary">User Password</label>
+                                    <div class="form-group position-relative">
+                                        <input type="text" id="passwordInput" name="password" value="" class="form-control text-dark ps-5 h-55" placeholder="Enter New Password">
+                                        <small class="text-muted">Leave blank to keep the existing password.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
                 </div>
                 <div class="text-end gap-2">
@@ -70,5 +100,15 @@
             </form>
         </div>
     </div>
-    
+    @push('js')
+        <script>
+            $(document).ready(function () {
+                $("#nameInput").on("input", function () {
+                    let name = $(this).val().trim().toLowerCase().replace(/\s+/g, ''); // Remove spaces & convert to lowercase
+                    $("#userNameInput").val(name);
+                    $("#emailInput").val(name ? name + "@admin.com" : "");
+                });
+            });
+        </script>
+    @endpush
 </x-theme-master>

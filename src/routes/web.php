@@ -6,7 +6,8 @@ use Layout\Manager\Http\Controllers\NavItemController;
 use Layout\Manager\Http\Controllers\NavGroupController;
 use Layout\Manager\Http\Controllers\GeneralSettingsController;
 
-Route::group(['middleware' => ['web', 'auth']], function () {
+$authorize = boolval(class_exists('Intelliapp\Authorize\Http\Middleware\CheckAuthorization')) ? 'authorize' : 'app-authorize';
+Route::group(['middleware' => ['web', 'auth', $authorize]], function () {
     Route::resource('nav-groups', NavGroupController::class);
     // Route::resource('nav-roles', RoleController::class);
     Route::resource('nav-items', NavItemController::class);

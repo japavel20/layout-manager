@@ -54,9 +54,8 @@
                                     <td>{{ $tenant->database }}</td>
                                     <td>
                                         <span class="badge 
-                                            @if($tenant->status === 'active') bg-success 
-                                            @elseif($tenant->status === 'inactive') bg-warning 
-                                            @elseif($tenant->status === 'suspended') bg-danger 
+                                            @if($tenant->status === 'Active') bg-success 
+                                            @elseif($tenant->status === 'Inactive') bg-warning  
                                             @else bg-danger 
                                             @endif">
                                             {{ ucfirst($tenant->status) }}
