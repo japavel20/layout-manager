@@ -9,6 +9,7 @@ use Layout\Manager\Models\Tenant;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\QueryException;
 use Layout\Manager\Http\Requests\TenantRequest;
+use Illuminate\Support\Facades\DB;
 
 //use another classes
 
@@ -58,6 +59,7 @@ class TenantController extends Controller
     public function store(TenantRequest $request)
     {
         try {
+            DB::beginTransaction();
             $tenant = Tenant::create([
                 'id'        => Str::uuid(),
                 'name'      => $request->name,
@@ -68,11 +70,11 @@ class TenantController extends Controller
             $tenantUser = User::create([
                 'name'      => $request->name,
                 'email'     => $request->email,
-                'password'  => $request->password,
                 'password'  => bcrypt($request->password),
                 'active_role_id'  => 2,
                 'tenant_id' => $tenant->id,
             ]);
+            DB::commit();
             //handle relationship store
             return redirect()->route('tenants.index')
                 ->withSuccess(__('Successfully Created'));
@@ -115,8 +117,7 @@ class TenantController extends Controller
     public function update(TenantRequest $request, Tenant $tenant)
     {
         try {
-            // $tenant->update($request->all());
-            \DB::beginTransaction();
+            DB::beginTransaction();
 
             // Update tenant details (Tenant table)
             $tenantData = $request->only(['name', 'domain', 'database', 'status']); // or whatever fields you want to allow for the tenant update
@@ -139,7 +140,7 @@ class TenantController extends Controller
             }
 
             // Commit the transaction
-            \DB::commit();
+            DB::commit();
 
             return redirect()->route('tenants.index')
                 ->withSuccess(__('Successfully Updated'));

@@ -14,9 +14,9 @@ use Layout\Manager\Http\Controllers\Api\NavLocationHistoryController;
 
 //use namespace
 
-// $authorize = boolval(class_exists('Pondit\Authorize\Http\Middleware\CheckAuthorization')) ? 'authorize' : 'app-authorize';
+$authorize = boolval(class_exists('Intelliapp\Authorize\Http\Middleware\CheckAuthorization')) ? 'authorize' : 'app-authorize';
 
-Route::group(['middleware' => ['web', 'api', 'auth'], 'prefix' => 'api', 'as' => 'api.'], function () {
+Route::group(['middleware' => ['web', 'api', 'auth', $authorize], 'prefix' => 'api', 'as' => 'api.'], function () {
     Route::apiResource('nav-groups', NavGroupController::class);
     Route::apiResource('nav-items', NavItemController::class);
     Route::get('/get-nav-items-with-selected/{locationId}', [NavGroupController::class, 'getNavItemWithSelected']);
