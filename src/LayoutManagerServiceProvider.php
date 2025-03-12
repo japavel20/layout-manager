@@ -113,5 +113,9 @@ class LayoutManagerServiceProvider extends ServiceProvider
             'selecttrio',
             \Layout\Manager\App\View\Components\DataEntry\Selecttrio::class
         );
+        \Illuminate\Support\Facades\Blade::component(
+            'tenant-selector',
+            \Layout\Manager\App\View\Components\DataEntry\TenantSelector::class
+        );
     }
 }
