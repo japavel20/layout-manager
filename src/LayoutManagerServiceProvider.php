@@ -56,6 +56,10 @@ class LayoutManagerServiceProvider extends ServiceProvider
             \Layout\Manager\App\View\Components\Layouts\Partials\Sidebar::class
         );
         \Illuminate\Support\Facades\Blade::component(
+            'headerLogo',
+            \Layout\Manager\App\View\Components\Layouts\Partials\Headerlogo::class
+        );
+        \Illuminate\Support\Facades\Blade::component(
             'header',
             \Layout\Manager\App\View\Components\Layouts\Partials\Header::class
         );

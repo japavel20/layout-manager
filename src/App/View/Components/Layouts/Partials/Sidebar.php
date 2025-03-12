@@ -25,7 +25,6 @@ class Sidebar extends Component
         $navGroups = NavGroup::with(['navItems' => function ($query) {
             $query->orderBy('position');
         }])->orderBy('position')->get();
-
         return view('layout::components.layouts.partials.sidebar', compact('navGroups'));
     }
 }
