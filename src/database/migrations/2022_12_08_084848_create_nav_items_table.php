@@ -42,6 +42,6 @@ class CreateNavItemsTable extends Migration
      */
     public function down()
     {
-        Schema::connection('smertgenie')->dropIfExists('nav_items');
+        Schema::dropIfExists('nav_items');
     }
 }

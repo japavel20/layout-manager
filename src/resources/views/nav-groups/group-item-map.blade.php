@@ -22,6 +22,7 @@
     
     <div class="card bg-white border-0 rounded-3 mb-4">
         <div class="card-body p-4">
+            <x-toster/>
             <form action="{{ route('nav-group-item-map.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
@@ -29,7 +30,8 @@
                         <div class="form-group mb-4">
                             <label class="label text-secondary">Navgroup</label>
                             <div class="form-group position-relative">
-                                <select class="form-select form-control ps-5 h-55 select-section" aria-label="Default select example" name="navgroup_id" id="navgroup_idsInput">
+                                <select class="form-select form-control  h-55 select-section" aria-label="Default select example" name="navgroup_id" id="navgroup_idsInput">
+                                    <option value="" selected>Please Select Group</option>
                                     @foreach($navGroups as $group)
                                         <option value="{{ $group->id }}">{{ $group->title }}</option>
                                     @endforeach

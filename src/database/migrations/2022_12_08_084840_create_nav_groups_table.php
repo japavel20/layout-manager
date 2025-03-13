@@ -37,6 +37,6 @@ class CreateNavGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::connection('smertgenie')->dropIfExists('nav_groups');
+        Schema::dropIfExists('nav_groups');
     }
 }

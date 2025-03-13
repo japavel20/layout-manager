@@ -179,12 +179,14 @@ class NavGroupController extends Controller
             if ($selectedNavItems != null) {
                 foreach ($selectedNavItems as $navId => $navItem) {
                     if (!$navGroup->navItems->contains($navId)) {
-                        $navGroup->navItems()->attach($navId);
+                        $navGroup->navItems()->attach($navId, [
+                            'id' => Str::uuid(),  // Generate a new UUID
+                            'tenant_id' => auth()->user()->tenant_id ?? null, // Assign tenant_id if needed
+                        ]);
                     }
                 }
             }
-
-            return redirect()->route('nav-group-item-map.index')
+            return redirect()->route('nav-group-item-map')
                 ->withSuccess(__('Recored Stored Successfully'));
         } catch (\Exception | QueryException $e) {
             \Log::channel('pondit')->error($e->getMessage());
