@@ -12,19 +12,21 @@ class TenantSelector extends Component
     public $tenantId;
     public $label;
     public $placeholder;
+    public $isSuperAdmin;
 
     public function __construct($label = 'Select Tenant', $placeholder = 'Select Tenant')
     {
         $user = Auth::user();
 
-        // If the user is a super admin, load all tenants
-        if ($user && $user->active_role_id == 1) {
-            $this->tenants = Tenant::all();
+        $this->isSuperAdmin = $user && $user->active_role_id == 1;
+        // If the user is a super admin, fetch all tenants
+        if ($this->isSuperAdmin) {
+            $this->tenants = Tenant::all(); // Get all tenants
         } else {
-            // Otherwise, set only their tenant ID
-            $this->tenantId = $user?->tenant_id;
+            // Otherwise, set only the user's tenant ID
+            $this->tenantId = $user->tenant_id;
         }
-        // Default selected value
+        // Default label and placeholder
         $this->label = $label;
         $this->placeholder = $placeholder;
     }
