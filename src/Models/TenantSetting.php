@@ -26,7 +26,7 @@ class TenantSetting extends Model
 
     public function getRouteKeyName()
     {
-        return 'uuid';
+        return 'id';
     }
 
     protected static function booted()

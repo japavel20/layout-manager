@@ -58,14 +58,14 @@
                                     <td>
                                         <div class="d-flex align-items-center gap-1">
                                             <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
-                                                <a href="{{route('nav-groups.show', $navGroup->uuid)}}"><i class="material-symbols-outlined fs-16 text-primary">visibility</i></a>
+                                                <a href="{{route('nav-groups.show', $navGroup->id)}}"><i class="material-symbols-outlined fs-16 text-primary">visibility</i></a>
                                             </button>
                                             <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
-                                                <a href="{{route('nav-groups.edit', $navGroup->uuid)}}">
+                                                <a href="{{route('nav-groups.edit', $navGroup->id)}}">
                                                     <i class="material-symbols-outlined fs-16 text-body">edit</i>
                                                 </a>
                                             </button>
-                                            <form action="{{ route('nav-groups.destroy', $navGroup->uuid) }}" method="POST" style="display: inline;">
+                                            <form action="{{ route('nav-groups.destroy', $navGroup->id) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE') 
                                                 

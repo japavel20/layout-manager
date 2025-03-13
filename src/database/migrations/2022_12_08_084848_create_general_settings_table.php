@@ -15,7 +15,7 @@ class CreateGeneralSettingsTable extends Migration
     {
         Schema::create('general_settings', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('tenat_id')->nullable();
+            $table->uuid('tenant_id')->nullable();
             $table->string('key');
             $table->string('value');
             $table->string('path')->nullable();

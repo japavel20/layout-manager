@@ -16,13 +16,16 @@ class NavGroup extends Model
     use UserTrackable;
     use SoftDeletes;
 
+
     // use NodeTrait;
 
 
     // use Historiable;
     // protected $connection = '';
     protected $table = 'nav_groups';
-    protected $guarded = ['id'];
+    protected $guarded = [];
+    protected $keyType = 'string';
+    public $incrementing = false;
 
 
     /**
@@ -32,7 +35,7 @@ class NavGroup extends Model
      */
     public function getRouteKeyName()
     {
-        return 'uuid';
+        return 'id';
     }
     public function navItems()
     {

@@ -18,7 +18,9 @@ class NavItem extends Model
     // use Historiable;
     protected $connection = '';
     protected $table = 'nav_items';
-    protected $guarded = ['id'];
+    protected $guarded = [];
+    protected $keyType = 'string';
+    public $incrementing = false;
 
 
     /**
@@ -28,7 +30,7 @@ class NavItem extends Model
      */
     public function getRouteKeyName()
     {
-        return 'uuid';
+        return 'id';
     }
 
     public function navGroups()

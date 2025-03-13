@@ -14,9 +14,8 @@ class CreateNavGroupsTable extends Migration
     public function up()
     {
         Schema::create('nav_groups', function (Blueprint $table) {
-            $table->increments('id');
-            $table->uuid('uuid');
-            $table->uuid('tenat_id')->nullable();
+            $table->uuid('id')->primary();
+            $table->uuid('tenant_id')->nullable();
             $table->string('title', '255');
             $table->string('icon', '255')->nullable();
             $table->json('data_navs')->nullable();

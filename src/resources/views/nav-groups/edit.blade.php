@@ -22,7 +22,7 @@
     
     <div class="card bg-white border-0 rounded-3 mb-4">
         <div class="card-body p-4">
-            <form action="{{ route('nav-groups.update', $navGroup->uuid) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('nav-groups.update', $navGroup->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <div class="row">

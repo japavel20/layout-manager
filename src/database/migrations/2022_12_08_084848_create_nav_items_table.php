@@ -14,9 +14,8 @@ class CreateNavItemsTable extends Migration
     public function up()
     {
         Schema::create('nav_items', function (Blueprint $table) {
-            $table->increments('id');
-            $table->uuid('uuid');
-            $table->uuid('tenat_id')->nullable();
+            $table->uuid('id')->primary();
+            $table->uuid('tenant_id')->nullable();
             $table->string('title', '255')->nullable();
             $table->tinyInteger('is_internal')->nullable();
             $table->string('url', '255')->nullable();

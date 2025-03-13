@@ -57,7 +57,7 @@ class NavItemController extends Controller
     public function store(NavItemRequest $request)
     {
         try {
-            $navItem = NavItem::create(['uuid' => Str::uuid()] + $request->all());
+            $navItem = NavItem::create(['id' => Str::uuid()] + $request->all());
             //handle relationship store
             return redirect()->route('nav-items.index')
                 ->withSuccess(__('Successfully Created'));

@@ -62,14 +62,14 @@
                                     <td>
                                         <div class="d-flex align-items-center gap-1">
                                             <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
-                                                <a href="{{route('nav-items.show', $navItem->uuid)}}"><i class="material-symbols-outlined fs-16 text-primary">visibility</i></a>
+                                                <a href="{{route('nav-items.show', $navItem->id)}}"><i class="material-symbols-outlined fs-16 text-primary">visibility</i></a>
                                             </button>
                                             <button class="ps-0 border-0 bg-transparent lh-1 position-relative top-2">
-                                                <a href="{{route('nav-items.edit', $navItem->uuid)}}">
+                                                <a href="{{route('nav-items.edit', $navItem->id)}}">
                                                     <i class="material-symbols-outlined fs-16 text-body">edit</i>
                                                 </a>
                                             </button>
-                                            <form action="{{ route('nav-items.destroy', $navItem->uuid) }}" method="POST" style="display: inline;">
+                                            <form action="{{ route('nav-items.destroy', $navItem->id) }}" method="POST" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE') {{-- Spoof DELETE request --}}
                                                 

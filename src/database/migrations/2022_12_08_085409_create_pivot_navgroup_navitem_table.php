@@ -14,10 +14,10 @@ class CreatePivotNavGroupNavItemTable extends Migration
     public function up()
     {
         Schema::create('nav_group_nav_item', function (Blueprint $table) {
-            $table->id();
-            $table->uuid('tenat_id')->nullable();
-            $table->integer('nav_group_id')->unsigned();
-            $table->integer('nav_item_id')->unsigned();
+            $table->uuid('id')->primary();
+            $table->uuid('tenant_id')->nullable();
+            $table->foreignUuid('nav_group_id');
+            $table->foreignUuid('nav_item_id');
             $table->timestamps();
         });
     }
