@@ -62,7 +62,7 @@ class NavItemController extends Controller
             return redirect()->route('nav-items.index')
                 ->withSuccess(__('Successfully Created'));
         } catch (\Exception | QueryException $e) {
-            \Log::channel('pondit')->error($e->getMessage());
+            \Log::channel('intelliapp')->error($e->getMessage());
             return redirect()->back()->withInput()->withErrors(
                 config('app.env') == 'production' ? __('Somethings Went Wrong') : $e->getMessage()
             );
@@ -106,7 +106,7 @@ class NavItemController extends Controller
             return redirect()->route('nav-items.index')
                 ->withSuccess(__('Successfully Updated'));
         } catch (\Exception | QueryException $e) {
-            \Log::channel('pondit')->error($e->getMessage());
+            \Log::channel('intelliapp')->error($e->getMessage());
             return redirect()->back()->withInput()->withErrors(
                 config('app.env') == 'production' ? __('Somethings Went Wrong') : $e->getMessage()
             );
@@ -127,7 +127,7 @@ class NavItemController extends Controller
             return redirect()->route('nav-items.index')
                 ->withSuccess(__('Successfully Deleted'));
         } catch (\Exception | QueryException $e) {
-            \Log::channel('pondit')->error($e->getMessage());
+            \Log::channel('intelliapp')->error($e->getMessage());
             return redirect()->back()->withInput()->withErrors(
                 config('app.env') == 'production' ? __('Somethings Went Wrong') : $e->getMessage()
             );

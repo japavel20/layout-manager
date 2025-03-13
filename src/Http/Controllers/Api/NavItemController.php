@@ -63,7 +63,7 @@ class NavItemController extends Controller
                 'data' => $navItem
             ], 201);
         } catch (\Exception | QueryException $e) {
-            \Log::channel('pondit')->error($e->getMessage());
+            \Log::channel('intelliapp')->error($e->getMessage());
             return response()->json([
                 'error' => config('app.env') == 'production' ? __('Somethings Went Wrong') : $e->getMessage()
             ], 500);
@@ -102,7 +102,7 @@ class NavItemController extends Controller
                 'data' => $navItem
             ], 200);
         } catch (\Exception | QueryException $e) {
-            \Log::channel('pondit')->error($e->getMessage());
+            \Log::channel('intelliapp')->error($e->getMessage());
             return response()->json([
                 'error' => config('app.env') == 'production' ? __('Somethings Went Wrong') : $e->getMessage()
             ], 500);
@@ -125,7 +125,7 @@ class NavItemController extends Controller
                 'message' => __('Successfully Deleted')
             ], 200);
         } catch (\Exception | QueryException $e) {
-            \Log::channel('pondit')->error($e->getMessage());
+            \Log::channel('intelliapp')->error($e->getMessage());
             return response()->json([
                 'error' => config('app.env') == 'production' ? __('Somethings Went Wrong') : $e->getMessage()
             ], 500);

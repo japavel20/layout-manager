@@ -62,7 +62,7 @@ class TenantController extends Controller
                 'data' => $tenant
             ], 201);
         } catch (\Exception | QueryException $e) {
-            \Log::channel('pondit')->error($e->getMessage());
+            \Log::channel('intelliapp')->error($e->getMessage());
             return response()->json([
                 'error' => config('app.env') == 'production' ? __('Somethings Went Wrong') : $e->getMessage()
             ], 500);
@@ -101,7 +101,7 @@ class TenantController extends Controller
                 'data' => $tenant
             ], 200);
         } catch (\Exception | QueryException $e) {
-            \Log::channel('pondit')->error($e->getMessage());
+            \Log::channel('intelliapp')->error($e->getMessage());
             return response()->json([
                 'error' => config('app.env') == 'production' ? __('Somethings Went Wrong') : $e->getMessage()
             ], 500);
@@ -124,7 +124,7 @@ class TenantController extends Controller
                 'message' => __('Successfully Deleted')
             ], 200);
         } catch (\Exception | QueryException $e) {
-            \Log::channel('pondit')->error($e->getMessage());
+            \Log::channel('intelliapp')->error($e->getMessage());
             return response()->json([
                 'error' => config('app.env') == 'production' ? __('Somethings Went Wrong') : $e->getMessage()
             ], 500);
